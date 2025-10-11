@@ -142,11 +142,14 @@ public class TabelaHash {
         }
     }
 
+    //inserir com Rehashing com a função de hash linear
     public void inserirRehashing(Registro r){
         int indice = hashLinear(r.getCodigo());
 
+        //Se ficar cheia a tabela
         if (indice == -1) return;
 
+        //se não registra o código
         Node registro = new Node();
         registro.setInformacao(r);
         tabela[indice] = registro;

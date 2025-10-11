@@ -1,139 +1,80 @@
 package src;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Random;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        // Tamanhos da tabela
-        int[] tamanhosTabela = {1000, 10000, 100000};
-        // Quantidade de registros
-        int[] tamanhosDados = {100_000, 1_000_000, 10_000_000};
-        long seed = 42;
+        // ==============================
+        // Parâmetros
+        // ==============================
+        long seed = 42;                   // mesma seed para todos os testes
+        int[] tamanhosTabelas = {1000, 10000, 100000};
+        int[] quantidadesDados = {100_000, 1_000_000, 10_000_000};
 
-        // CSV para salvar resultados
-        FileWriter csv = new FileWriter("resultados.csv");
-        csv.write("TipoTabela,TamanhoTabela,TamanhoDados,TempoInsercao(s),TempoBusca(s),Colisoes,MenorGap,MaiorGap,MediaGap\n");
+        for (int tamanhoTabela : tamanhosTabelas) {
+            for (int quantidadeDados : quantidadesDados) {
 
-        for (int tamTabela : tamanhosTabela) {
-            for (int tamDados : tamanhosDados) {
+                System.out.println("=======================================");
+                System.out.println("Tabela de tamanho " + tamanhoTabela + " | Dados: " + quantidadeDados);
 
-                System.out.println("=== Teste: Tabela " + tamTabela + " | Dados " + tamDados + " ===");
-                int[] dados = gerarDados(tamDados, seed);
+                // ==============================
+                // Gerar dados
+                // ==============================
+                int[] dados = Dados.gerarDados(quantidadeDados, seed);
 
-                // ====================
-                // Encadeamento Divisão
-                // ====================
-                TabelaHash tabelaDiv = new TabelaHash(tamTabela);
-
+                // ==============================
+                // Encadeamento - Divisão
+                // ==============================
+                TabelaHash tabelaDiv = new TabelaHash(tamanhoTabela);
                 long start = System.nanoTime();
-                for (int c : dados) {
-                    tabelaDiv.inserirEncadeamentoDivisao(new Registro(c));
-                }
+                for (int c : dados) tabelaDiv.inserirEncadeamentoDivisao(new Registro(c));
                 long end = System.nanoTime();
-                double tempoInsercao = (end - start) / 1_000_000_000.0;
+                System.out.println("Encadeamento Divisão – Tempo: " + (end-start)/1_000_000_000.0 + " s");
+                System.out.println("Colisões: " + tabelaDiv.getColisoesHashDivisao());
 
-                // Busca
+                // ==============================
+                // Encadeamento - Multiplicação
+                // ==============================
+                TabelaHash tabelaMul = new TabelaHash(tamanhoTabela);
                 start = System.nanoTime();
-                for (int c : dados) {
-                    buscarEncadeamento(tabelaDiv, c);
-                }
+                for (int c : dados) tabelaMul.inserirEncadeamentoMultiplicacao(new Registro(c));
                 end = System.nanoTime();
-                double tempoBusca = (end - start) / 1_000_000_000.0;
+                System.out.println("Encadeamento Multiplicação – Tempo: " + (end-start)/1_000_000_000.0 + " s");
+                System.out.println("Colisões: " + tabelaMul.getColisoesHashMultiplicacao());
 
-                csv.write("EncadeamentoDivisao," + tamTabela + "," + tamDados + "," +
-                        tempoInsercao + "," + tempoBusca + "," +
-                        tabelaDiv.getColisoesHashDivisao() + ",-, -, -\n"); // gaps não aplicam para encadeamento
-
-                // ====================
-                // Encadeamento Multiplicação
-                // ====================
-                TabelaHash tabelaMul = new TabelaHash(tamTabela);
-
-                start = System.nanoTime();
-                for (int c : dados) {
-                    tabelaMul.inserirEncadeamentoMultiplicacao(new Registro(c));
-                }
-                end = System.nanoTime();
-                tempoInsercao = (end - start) / 1_000_000_000.0;
-
-                // Busca
-                start = System.nanoTime();
-                for (int c : dados) {
-                    buscarEncadeamento(tabelaMul, c);
-                }
-                end = System.nanoTime();
-                tempoBusca = (end - start) / 1_000_000_000.0;
-
-                csv.write("EncadeamentoMultiplicacao," + tamTabela + "," + tamDados + "," +
-                        tempoInsercao + "," + tempoBusca + "," +
-                        tabelaMul.getColisoesHashMultiplicacao() + ",-, -, -\n");
-
-                // ====================
+                // ==============================
                 // Rehashing Linear
-                // ====================
-                TabelaHash tabelaRehash = new TabelaHash(tamTabela);
-
+                // ==============================
+                TabelaHash tabelaRehash = new TabelaHash(tamanhoTabela);
                 start = System.nanoTime();
-                for (int c : dados) {
-                    tabelaRehash.inserirRehashing(new Registro(c));
-                }
+                for (int c : dados) tabelaRehash.inserirRehashing(new Registro(c));
                 end = System.nanoTime();
-                tempoInsercao = (end - start) / 1_000_000_000.0;
+                System.out.println("Rehashing Linear – Tempo: " + (end-start)/1_000_000_000.0 + " s");
+                System.out.println("Colisões: " + tabelaRehash.getColisoesHashLinear());
 
-                // Busca
-                start = System.nanoTime();
-                for (int c : dados) {
-                    buscarRehashing(tabelaRehash, c);
-                }
-                end = System.nanoTime();
-                tempoBusca = (end - start) / 1_000_000_000.0;
+                // ==============================
+                // Busca de teste
+                // ==============================
+                int codigoTeste = dados[0];
+                boolean encontradoDiv = buscarEncadeamento(tabelaDiv, codigoTeste);
+                boolean encontradoMul = buscarEncadeamento(tabelaMul, codigoTeste);
+                boolean encontradoRehash = buscarRehashing(tabelaRehash, codigoTeste);
 
-                // Calcular gaps
-                int menorGap = Integer.MAX_VALUE;
-                int maiorGap = Integer.MIN_VALUE;
-                int somaGaps = 0;
-                int contador = 0;
-                for (int g : tabelaRehash.getGapsLinear()) {
-                    if (g > 0) {
-                        menorGap = Math.min(menorGap, g);
-                        maiorGap = Math.max(maiorGap, g);
-                        somaGaps += g;
-                        contador++;
-                    }
-                }
-                double mediaGap = contador > 0 ? (double) somaGaps / contador : 0;
+                System.out.println("\nBusca do código " + codigoTeste);
+                System.out.println("Divisão: " + encontradoDiv);
+                System.out.println("Multiplicação: " + encontradoMul);
+                System.out.println("Rehashing: " + encontradoRehash);
 
-                csv.write("RehashingLinear," + tamTabela + "," + tamDados + "," +
-                        tempoInsercao + "," + tempoBusca + "," +
-                        tabelaRehash.getColisoesHashLinear() + "," +
-                        menorGap + "," + maiorGap + "," + mediaGap + "\n");
-
+                System.out.println("---------------------------------------\n");
             }
         }
-
-        csv.close();
-        System.out.println("Resultados salvos em resultados.csv");
     }
 
     // ==============================
-    // Funções auxiliares
+    // Funções de busca
     // ==============================
-    public static int[] gerarDados(int n, long seed) {
-        Random rand = new Random(seed);
-        int[] dados = new int[n];
-        for (int i = 0; i < n; i++) {
-            dados[i] = rand.nextInt(1_000_000_000); // 9 dígitos
-        }
-        return dados;
-    }
-
     public static boolean buscarEncadeamento(TabelaHash tabela, int codigo) {
         Node[] vetor = tabela.getTabela();
         int hashDiv = codigo % vetor.length;
-
         Node atual = vetor[hashDiv];
         while (atual != null) {
             if (atual.getInformacao().getCodigo() == codigo) return true;

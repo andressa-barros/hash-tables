@@ -50,6 +50,7 @@ public class TabelaHash {
         //Calcular novo indice com linear probing
         int indice = (hashBase + tentativa) % tamanhoTabela;
 
+        //Iremos realizar este loop enquanto não acharmos uma posição livre na tabela
         while (tentativa < tamanhoTabela) {
             if (tabela[indice] == null) {
                 return indice;

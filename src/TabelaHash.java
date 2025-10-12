@@ -1,189 +1,146 @@
 package src;
+import static java.lang.Math.floor;
 
 public class TabelaHash {
     private Node[] tabela;
     private int tamanhoTabela;
-    int colisoesHashDivisao;
-    int colisoesHashMultiplicacao;
-    int colisoesHashLinear;
-    int tamanhoListas[];
-    int gapsLinear[];
+
+    // Contadores de colisões
+    private int colisoesHashDivisao;
+    private int colisoesHashMultiplicacao;
+    private int colisoesHashLinear;
+    private int colisoesDoubleHash;
 
     public TabelaHash(int tamanhoTabela){
         this.tabela = new Node[tamanhoTabela];
         this.tamanhoTabela = tamanhoTabela;
-        this.gapsLinear = new int[tamanhoTabela];
-        this.tamanhoListas = new int[tamanhoTabela];
     }
 
-    public int hashDivisao(int codigo){
-
-        //Faz o cálculo de modulo e retorna o indice sendo o resto da divisão
-        int indice = codigo % tamanhoTabela;
-        return indice;
-    }
-
-    public int hashMultiplicacao(int codigo){
-
-        //constante A (inverso da razão áurea)
-        double A = 0.6180339887;
-
-        //Multiplicar o código pela constante A
-        double produto = codigo * A;
-
-        //Isolar a parte fracionária (resultado será smepre entre 0 e 1)
-        double parteFracionaria = produto - Math.floor(produto);
-
-        //Multiplicar pelo tamanho da tabela
-        double indiceReal = parteFracionaria * tamanhoTabela;
-
-        //Transformar em um índice inteiro
-        int indice = (int) Math.floor(indiceReal);
-
-        return indice;
-    }
-
-    public int hashLinear (int codigo){
-        //número da tentativa de inserção (int, começando em 0)
-        int tentativa = 0;
-
-        //Calcular o índice base (neste caso vamos usar divisão)
-        int hashBase = codigo % tamanhoTabela;
-
-        //Calcular novo indice com linear probing
-        int indice = (hashBase + tentativa) % tamanhoTabela;
-
-        //Iremos realizar este loop enquanto não acharmos uma posição livre na tabela
-        while (tentativa < tamanhoTabela) {
-            if (tabela[indice] == null) {
-                gapsLinear[indice] = tentativa;
-                return indice;
-
-            } else {
-                colisoesHashLinear++;
-                tentativa++;
-                indice = (hashBase + tentativa) % tamanhoTabela;
-
-            }
-        }
-
-        //Caso a tabela esteja cheia
-        return -1;
-    }
-
-    //Inserir com Encademaneto com a função de hash de divisão
-    public void inserirEncadeamentoDivisao(Registro r){
-        //Calculo para saber o indice que sera inserido o código
-        int indice = hashDivisao(r.getCodigo());
-
-        //se o indice estiver vazio irei inserir o novo nó com o código de registro
-        if(tabela[indice] == null){
-            Node novoNo = new Node();
-            novoNo.setInformacao(r);
-            tabela[indice] = novoNo;
-
-            //o valor do tamanho da lista do indice é 1, pois somente temos um registro na lista deste indice
-            tamanhoListas[indice] = 1;
-        }
-        //se não estiver vazio irei inserir no final da lista do indice o novo nó com o código de registro
-        else{
-
-            Node atual = tabela[indice];
-
-            int colisoes = 0;
-
-            while(atual.getProximo() != null){
-                atual = atual.getProximo();
-                // cada nó que se passa é uma colisão
-                colisoes++;
-            }
-            Node novoNo = new Node();
-            novoNo.setInformacao(r);
-            atual.setProximo(novoNo);
-
-            //acumulamos todas as colisões da tabela
-            colisoesHashDivisao += colisoes;
-            //Quantidade total de nós no indice
-            tamanhoListas[indice] = colisoes + 1;
-        }
-    }
-
-    //Inserir com Encademaneto com a função de hash de multiplicação
-    public void inserirEncadeamentoMultiplicacao(Registro r){
-        //Calculo para saber o indice que sera inserido o código
-        int indice = hashMultiplicacao(r.getCodigo());
-
-        //se o indice estiver vazio irei inserir o novo nó com o código de registro
-        if(tabela[indice] == null){
-            Node novoNo = new Node();
-            novoNo.setInformacao(r);
-            tabela[indice] = novoNo;
-
-            tamanhoListas[indice] = 1;
-        }
-        //se não estiver vazio irei inserir no final da lista do indice o novo nó com o código de registro
-        else{
-            Node atual = tabela[indice];
-
-            int colisoes = 0;
-            while(atual.getProximo() != null){
-                atual = atual.getProximo();
-                // cada nó que se passa é uma colisão
-                colisoes++;
-            }
-            Node novoNo = new Node();
-            novoNo.setInformacao(r);
-            atual.setProximo(novoNo);
-
-            //acumulamos todas as colisões da tabela
-            colisoesHashMultiplicacao += colisoes;
-            //Quantidade total de nós no indice
-            tamanhoListas[indice] = colisoes + 1;
-        }
-    }
-
-    //inserir com Rehashing com a função de hash linear
-    public void inserirRehashing(Registro r){
-        int indice = hashLinear(r.getCodigo());
-
-        //Se ficar cheia a tabela
-        if (indice == -1) return;
-
-        //se não registra o código
-        Node registro = new Node();
-        registro.setInformacao(r);
-        tabela[indice] = registro;
-
-    }
-
-    public int getColisoesHashDivisao(){
-        return colisoesHashDivisao;
-    }
-
-    public int getColisoesHashMultiplicacao(){
-        return colisoesHashMultiplicacao;
-    }
-
-    public int getColisoesHashLinear(){
-        return  colisoesHashLinear;
-    }
-
-    public int[] getTamanhoListas(){
-        return tamanhoListas;
-    }
-
-    public int[] getGapsLinear() {
-        return gapsLinear;
-    }
-
-    public Node[] getTabela(){
+    // =========================
+    // GETTERS
+    // =========================
+    public Node[] getTabela() {
         return tabela;
     }
 
+    public int getTamanhoTabela() { // pq o duplo hash vai usar
+        return tamanhoTabela;
+    }
 
+    public int getColisoesHashDivisao() {
+        return colisoesHashDivisao;
+    }
 
+    public int getColisoesHashMultiplicacao() {
+        return colisoesHashMultiplicacao;
+    }
 
+    public int getColisoesHashLinear() {
+        return colisoesHashLinear;
+    }
 
+    public int getColisoesDoubleHash() {
+        return colisoesDoubleHash;
+    }
 
+    // =========================
+    // FUNÇÕES HASH
+    // =========================
+    public int hashDivisao(int codigo){
+        return codigo % tamanhoTabela;
+    }
 
+    public int hashMultiplicacao(int codigo){
+        double A = 0.6180339887;
+        double frac = (codigo * A) - Math.floor(codigo * A);
+        return (int) Math.floor(frac * tamanhoTabela);
+    }
+
+    public int hashLinear(int codigo, int tentativa){
+        return (codigo % tamanhoTabela + tentativa) % tamanhoTabela;
+    }
+
+    public int hashDouble(int codigo) {
+        return 1 + (codigo % (tamanhoTabela - 1));//garantir que não seja zero usando 1+
+    }
+
+    // =========================
+    // INSERÇÕES
+    // =========================
+    public void inserirEncadeamentoDivisao(Registro reg){
+        int idx = hashDivisao(reg.getCodigo());
+        Node novo = new Node();
+        novo.setInformacao(reg);
+        Node atual = tabela[idx];
+
+        int colisaoLocal = 0;
+        if (atual == null) {
+            tabela[idx] = novo;
+        } else {
+            colisaoLocal++;
+            while (atual.getProximo() != null){
+                atual = atual.getProximo();
+                colisaoLocal++;
+            }
+            atual.setProximo(novo);
+        }
+        colisoesHashDivisao += colisaoLocal;
+    }
+
+    public void inserirEncadeamentoMultiplicacao(Registro reg){
+        int idx = hashMultiplicacao(reg.getCodigo());
+        Node novo = new Node();
+        novo.setInformacao(reg);
+        Node atual = tabela[idx];
+
+        int colisaoLocal = 0;
+        if (atual == null) {
+            tabela[idx] = novo;
+        } else {
+            colisaoLocal++;
+            while (atual.getProximo() != null){
+                atual = atual.getProximo();
+                colisaoLocal++;
+            }
+            atual.setProximo(novo);
+        }
+        colisoesHashMultiplicacao += colisaoLocal;
+    }
+
+    public void inserirRehashing(Registro reg){
+        int tentativa = 0;
+        int idx;
+        while (tentativa < tamanhoTabela){
+            idx = hashLinear(reg.getCodigo(), tentativa);
+            if (tabela[idx] == null){
+                Node novo = new Node();
+                novo.setInformacao(reg);
+                tabela[idx] = novo;
+                colisoesHashLinear += tentativa;
+                return;
+            }
+            tentativa++;
+        }
+        colisoesHashLinear += tentativa;
+    }
+
+    public void inserirDoubleHash(Registro reg) {
+        int tentativa = 0;
+        int idx;
+        int hash1 = reg.getCodigo() % tamanhoTabela;
+        int hash2 = hashDouble(reg.getCodigo());
+
+        while (tentativa < tamanhoTabela) {
+            idx = (hash1 + tentativa * hash2) % tamanhoTabela;
+            if (tabela[idx] == null) {
+                Node novo = new Node();
+                novo.setInformacao(reg);
+                tabela[idx] = novo;
+                colisoesDoubleHash += tentativa;
+                return;
+            }
+            tentativa++;
+        }
+        colisoesDoubleHash += tentativa;
+    }
 }

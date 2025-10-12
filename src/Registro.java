@@ -1,6 +1,4 @@
 package src;
-
-//A
 public class Registro {
     private final int codigo;
 

@@ -6,10 +6,10 @@ public class TabelaHash {
     private int tamanhoTabela;
 
     // Contadores de colisões
-    private int colisoesHashDivisao;
-    private int colisoesHashMultiplicacao;
-    private int colisoesHashLinear;
-    private int colisoesDoubleHash;
+    private long colisoesHashDivisao;
+    private long colisoesHashMultiplicacao;
+    private long colisoesHashLinear;
+    private long colisoesDoubleHash;
 
     public TabelaHash(int tamanhoTabela){
         this.tabela = new Node[tamanhoTabela];
@@ -27,19 +27,19 @@ public class TabelaHash {
         return tamanhoTabela;
     }
 
-    public int getColisoesHashDivisao() {
+    public long getColisoesHashDivisao() {
         return colisoesHashDivisao;
     }
 
-    public int getColisoesHashMultiplicacao() {
+    public long getColisoesHashMultiplicacao() {
         return colisoesHashMultiplicacao;
     }
 
-    public int getColisoesHashLinear() {
+    public long getColisoesHashLinear() {
         return colisoesHashLinear;
     }
 
-    public int getColisoesDoubleHash() {
+    public long getColisoesDoubleHash() {
         return colisoesDoubleHash;
     }
 
@@ -73,7 +73,7 @@ public class TabelaHash {
         novo.setInformacao(reg);
         Node atual = tabela[idx];
 
-        int colisaoLocal = 0;
+        long colisaoLocal = 0;
         if (atual == null) {
             tabela[idx] = novo;
         } else {
@@ -93,7 +93,7 @@ public class TabelaHash {
         novo.setInformacao(reg);
         Node atual = tabela[idx];
 
-        int colisaoLocal = 0;
+        long colisaoLocal = 0;
         if (atual == null) {
             tabela[idx] = novo;
         } else {

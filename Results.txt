@@ -1,0 +1,263 @@
+=======================================
+Tabela de Tamanho 1000 | Dados: 100000
+Tamanho de Rehashing Usado: 142867
+Encadeamento (Divisão) – Tempo: 0.090783666 s
+Colisões: 5004743
+Encadeamento (Multiplicação) – Tempo: 0.097496834 s
+Colisões: 5003075
+Rehashing Linear – Tempo: 0.008001459 s
+Colisões: 117881
+Double Hash – Tempo: 0.009540042 s
+Colisões: 72281
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 89.223375 ms
+Tempo de Busca (todos) – Multiplicação: 79.058542 ms
+Tempo de Busca (todos) – Rehashing: 6.236708 ms
+Tempo de Busca (todos) – Double Hash: 6.254083 ms
+Top 3 (Divisão):  #1 índice 760 tamanho 139 | #2 índice 920 tamanho 137 | #3 índice 969 tamanho 135
+Top 3 (Multiplicação):  #1 índice 605 tamanho 132 | #2 índice 326 tamanho 130 | #3 índice 727 tamanho 129
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=15 média=1.9946489228048951
+Gaps – Double Hash: mín=1 máx=10 média=1.4291858371674335
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 1000 | Dados: 1000000
+Tamanho de Rehashing Usado: 1428587
+Encadeamento (Divisão) – Tempo: 10.444452625 s
+Colisões: 499994493
+Encadeamento (Multiplicação) – Tempo: 19.968739834 s
+Colisões: 499986753
+Rehashing Linear – Tempo: 0.042216458 s
+Colisões: 1169612
+Double Hash – Tempo: 0.039799041 s
+Colisões: 718739
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 8333.157333 ms
+Tempo de Busca (todos) – Multiplicação: 19101.435792 ms
+Tempo de Busca (todos) – Rehashing: 40.630292 ms
+Tempo de Busca (todos) – Double Hash: 43.559458 ms
+Top 3 (Divisão):  #1 índice 625 tamanho 1101 | #2 índice 482 tamanho 1099 | #3 índice 264 tamanho 1092
+Top 3 (Multiplicação):  #1 índice 675 tamanho 1117 | #2 índice 534 tamanho 1087 | #3 índice 779 tamanho 1084
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=15 média=1.9812730273346308
+Gaps – Double Hash: mín=1 máx=11 média=1.428437636440596
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 1000 | Dados: 10000000
+Tamanho de Rehashing Usado: 14285717
+Encadeamento (Divisão) – Tempo: 560.235465792 s
+Colisões: 49999678152
+Encadeamento (Multiplicação) – Tempo: 1099.577836459 s
+Colisões: 50000046725
+Rehashing Linear – Tempo: 0.995388333 s
+Colisões: 11663989
+Double Hash – Tempo: 0.707697791 s
+Colisões: 7213499
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 238040.074084 ms
+Tempo de Busca (todos) – Multiplicação: 223478.85275 ms
+Tempo de Busca (todos) – Rehashing: 1305.604 ms
+Tempo de Busca (todos) – Double Hash: 1013.800625 ms
+Top 3 (Divisão):  #1 índice 990 tamanho 10324 | #2 índice 494 tamanho 10303 | #3 índice 851 tamanho 10278
+Top 3 (Multiplicação):  #1 índice 178 tamanho 10322 | #2 índice 375 tamanho 10322 | #3 índice 562 tamanho 10298
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=25 média=1.9864393157409523
+Gaps – Double Hash: mín=1 máx=12 média=1.4298277220733138
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 10000 | Dados: 100000
+Tamanho de Rehashing Usado: 142867
+Encadeamento (Divisão) – Tempo: 0.007886292 s
+Colisões: 500086
+Encadeamento (Multiplicação) – Tempo: 0.010080334 s
+Colisões: 499846
+Rehashing Linear – Tempo: 0.003930375 s
+Colisões: 117881
+Double Hash – Tempo: 0.00359125 s
+Colisões: 72281
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 6.931417 ms
+Tempo de Busca (todos) – Multiplicação: 7.12825 ms
+Tempo de Busca (todos) – Rehashing: 2.8855 ms
+Tempo de Busca (todos) – Double Hash: 2.852334 ms
+Top 3 (Divisão):  #1 índice 4723 tamanho 25 | #2 índice 7044 tamanho 24 | #3 índice 5270 tamanho 23
+Top 3 (Multiplicação):  #1 índice 3147 tamanho 24 | #2 índice 5285 tamanho 23 | #3 índice 9416 tamanho 23
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=1 máx=1 média=1.0
+Gaps – Rehashing: mín=1 máx=15 média=1.9946489228048951
+Gaps – Double Hash: mín=1 máx=10 média=1.4291858371674335
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 10000 | Dados: 1000000
+Tamanho de Rehashing Usado: 1428587
+Encadeamento (Divisão) – Tempo: 4.792494333 s
+Colisões: 50007626
+Encadeamento (Multiplicação) – Tempo: 4.858171416 s
+Colisões: 49996551
+Rehashing Linear – Tempo: 0.046591458 s
+Colisões: 1169612
+Double Hash – Tempo: 0.048272792 s
+Colisões: 718739
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 3065.426125 ms
+Tempo de Busca (todos) – Multiplicação: 4122.693708 ms
+Tempo de Busca (todos) – Rehashing: 46.051125 ms
+Tempo de Busca (todos) – Double Hash: 42.97725 ms
+Top 3 (Divisão):  #1 índice 95 tamanho 136 | #2 índice 3531 tamanho 136 | #3 índice 3656 tamanho 136
+Top 3 (Multiplicação):  #1 índice 5456 tamanho 136 | #2 índice 9845 tamanho 136 | #3 índice 809 tamanho 135
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=15 média=1.9812730273346308
+Gaps – Double Hash: mín=1 máx=11 média=1.428437636440596
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 10000 | Dados: 10000000
+Tamanho de Rehashing Usado: 14285717
+Encadeamento (Divisão) – Tempo: 270.319224167 s
+Colisões: 5000083275
+Encadeamento (Multiplicação) – Tempo: 713.538120333 s
+Colisões: 5000081038
+Rehashing Linear – Tempo: 1.355886333 s
+Colisões: 11663989
+Double Hash – Tempo: 0.883233 s
+Colisões: 7213499
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 38846.670833 ms
+Tempo de Busca (todos) – Multiplicação: 39324.25175 ms
+Tempo de Busca (todos) – Rehashing: 1435.327042 ms
+Tempo de Busca (todos) – Double Hash: 917.281792 ms
+Top 3 (Divisão):  #1 índice 8577 tamanho 1128 | #2 índice 2817 tamanho 1125 | #3 índice 7095 tamanho 1111
+Top 3 (Multiplicação):  #1 índice 1650 tamanho 1132 | #2 índice 5592 tamanho 1131 | #3 índice 5921 tamanho 1117
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=25 média=1.9864393157409523
+Gaps – Double Hash: mín=1 máx=12 média=1.4298277220733138
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 100000 | Dados: 100000
+Tamanho de Rehashing Usado: 142867
+Encadeamento (Divisão) – Tempo: 0.003605917 s
+Colisões: 50227
+Encadeamento (Multiplicação) – Tempo: 0.003253292 s
+Colisões: 49982
+Rehashing Linear – Tempo: 0.003932667 s
+Colisões: 117881
+Double Hash – Tempo: 0.003563292 s
+Colisões: 72281
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 1.607333 ms
+Tempo de Busca (todos) – Multiplicação: 2.429125 ms
+Tempo de Busca (todos) – Rehashing: 3.293708 ms
+Tempo de Busca (todos) – Double Hash: 2.987834 ms
+Top 3 (Divisão):  #1 índice 12877 tamanho 8 | #2 índice 2685 tamanho 7 | #3 índice 3491 tamanho 7
+Top 3 (Multiplicação):  #1 índice 68977 tamanho 8 | #2 índice 69104 tamanho 8 | #3 índice 73123 tamanho 8
+Gaps – Divisão: mín=1 máx=11 média=1.585516708186582
+Gaps – Multiplicação: mín=1 máx=11 média=1.575210228247812
+Gaps – Rehashing: mín=1 máx=15 média=1.9946489228048951
+Gaps – Double Hash: mín=1 máx=10 média=1.4291858371674335
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 100000 | Dados: 1000000
+Tamanho de Rehashing Usado: 1428587
+Encadeamento (Divisão) – Tempo: 0.356878291 s
+Colisões: 5000438
+Encadeamento (Multiplicação) – Tempo: 0.539867875 s
+Colisões: 4997105
+Rehashing Linear – Tempo: 0.053211083 s
+Colisões: 1169612
+Double Hash – Tempo: 0.052422458 s
+Colisões: 718739
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 410.720667 ms
+Tempo de Busca (todos) – Multiplicação: 248.243167 ms
+Tempo de Busca (todos) – Rehashing: 55.449458 ms
+Tempo de Busca (todos) – Double Hash: 44.928167 ms
+Top 3 (Divisão):  #1 índice 4938 tamanho 25 | #2 índice 41707 tamanho 25 | #3 índice 78239 tamanho 25
+Top 3 (Multiplicação):  #1 índice 81796 tamanho 27 | #2 índice 45439 tamanho 25 | #3 índice 86231 tamanho 25
+Gaps – Divisão: mín=1 máx=1 média=1.0
+Gaps – Multiplicação: mín=1 máx=1 média=1.0
+Gaps – Rehashing: mín=1 máx=15 média=1.9812730273346308
+Gaps – Double Hash: mín=1 máx=11 média=1.428437636440596
+---------------------------------------
+
+=======================================
+Tabela de Tamanho 100000 | Dados: 10000000
+Tamanho de Rehashing Usado: 14285717
+Encadeamento (Divisão) – Tempo: 34.226345 s
+Colisões: 500011335
+Encadeamento (Multiplicação) – Tempo: 27.237486916 s
+Colisões: 500019167
+Rehashing Linear – Tempo: 1.061624459 s
+Colisões: 11663989
+Double Hash – Tempo: 0.792982208 s
+Colisões: 7213499
+
+Busca do Código 762431130
+Divisão: true
+Multiplicação: true
+Rehashing: true
+Double Hash: true
+Tempo de Busca (todos) – Divisão: 8391.478042 ms
+Tempo de Busca (todos) – Multiplicação: 9446.269917 ms
+Tempo de Busca (todos) – Rehashing: 1151.894958 ms
+Tempo de Busca (todos) – Double Hash: 731.031291 ms
+Top 3 (Divisão):  #1 índice 50743 tamanho 149 | #2 índice 69830 tamanho 145 | #3 índice 60164 tamanho 144
+Top 3 (Multiplicação):  #1 índice 61475 tamanho 144 | #2 índice 70027 tamanho 144 | #3 índice 28152 tamanho 143
+Gaps – Divisão: mín=0 máx=0 média=0.0
+Gaps – Multiplicação: mín=0 máx=0 média=0.0
+Gaps – Rehashing: mín=1 máx=25 média=1.9864393157409523
+Gaps – Double Hash: mín=1 máx=12 média=1.4298277220733138
+---------------------------------------
+
+
+Process finished with exit code 0

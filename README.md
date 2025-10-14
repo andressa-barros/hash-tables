@@ -137,4 +137,5 @@ Reduzem colisões e melhoram dispersão
 
 #### Melhor método geral:
 Hash Duplo (Double Hashing)
-#### Melhor custo-benefício: Rehashing Linear
+#### Melhor custo-benefício:
+Rehashing Linear

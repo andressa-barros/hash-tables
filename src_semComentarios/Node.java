@@ -1,6 +1,6 @@
 package src_semComentarios;
 
-import src.Registro;
+import src_semComentarios.Registro;
 
 public class Node {
     private Registro informacao;

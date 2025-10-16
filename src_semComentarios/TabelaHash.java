@@ -1,9 +1,9 @@
 package src_semComentarios;
-import src.Node;
-import src.Registro;
+import src_semComentarios.Node;
+import src_semComentarios.Registro;
 
 public class TabelaHash {
-    private src.Node[] tabela;
+    private src_semComentarios.Node[] tabela;
     private int tamanhoTabela;
 
     private long colisoesHashDivisao;
@@ -12,12 +12,12 @@ public class TabelaHash {
     private long colisoesDoubleHash;
 
     public TabelaHash(int tamanhoTabela){
-        this.tabela = new src.Node[tamanhoTabela];
+        this.tabela = new src_semComentarios.Node[tamanhoTabela];
         this.tamanhoTabela = tamanhoTabela;
     }
 
 
-    public src.Node[] getTabela() {
+    public src_semComentarios.Node[] getTabela() {
         return tabela;
     }
 
@@ -60,11 +60,11 @@ public class TabelaHash {
     }
 
 
-    public void inserirEncadeamentoDivisao(src.Registro reg){
+    public void inserirEncadeamentoDivisao(src_semComentarios.Registro reg){
         int idx = hashDivisao(reg.getCodigo());
-        src.Node novo = new src.Node();
+        src_semComentarios.Node novo = new src_semComentarios.Node();
         novo.setInformacao(reg);
-        src.Node atual = tabela[idx];
+        src_semComentarios.Node atual = tabela[idx];
 
         long colisaoLocal = 0;
         if (atual == null) {
@@ -80,11 +80,11 @@ public class TabelaHash {
         colisoesHashDivisao += colisaoLocal;
     }
 
-    public void inserirEncadeamentoMultiplicacao(src.Registro reg){
+    public void inserirEncadeamentoMultiplicacao(src_semComentarios.Registro reg){
         int idx = hashMultiplicacao(reg.getCodigo());
-        src.Node novo = new src.Node();
+        src_semComentarios.Node novo = new src_semComentarios.Node();
         novo.setInformacao(reg);
-        src.Node atual = tabela[idx];
+        src_semComentarios.Node atual = tabela[idx];
 
         long colisaoLocal = 0;
         if (atual == null) {
@@ -100,13 +100,13 @@ public class TabelaHash {
         colisoesHashMultiplicacao += colisaoLocal;
     }
 
-    public void inserirRehashing(src.Registro reg){
+    public void inserirRehashing(src_semComentarios.Registro reg){
         int tentativa = 0;
         int idx;
         while (tentativa < tamanhoTabela){
             idx = hashLinear(reg.getCodigo(), tentativa);
             if (tabela[idx] == null){
-                src.Node novo = new src.Node();
+                src_semComentarios.Node novo = new src_semComentarios.Node();
                 novo.setInformacao(reg);
                 tabela[idx] = novo;
                 colisoesHashLinear += tentativa;
@@ -126,7 +126,7 @@ public class TabelaHash {
         while (tentativa < tamanhoTabela) {
             idx = (hash1 + tentativa * hash2) % tamanhoTabela;
             if (tabela[idx] == null) {
-                src.Node novo = new Node();
+                src_semComentarios.Node novo = new Node();
                 novo.setInformacao(reg);
                 tabela[idx] = novo;
                 colisoesDoubleHash += tentativa;

@@ -1,9 +1,9 @@
 package src_semComentarios;
 
-import src.Dados;
-import src.Node;
-import src.Registro;
-import src.TabelaHash;
+import src_semComentarios.Dados;
+import src_semComentarios.Node;
+import src_semComentarios.Registro;
+import src_semComentarios.TabelaHash;
 
 public class Main {
 

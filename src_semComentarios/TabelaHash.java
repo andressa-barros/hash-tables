@@ -56,7 +56,7 @@ public class TabelaHash {
     }
 
     public int hashDouble(int codigo) {
-        return 1 + (codigo % (tamanhoTabela - 1));//garantir que não seja zero usando 1+
+        return 1 + (codigo % (tamanhoTabela - 1));
     }
 
 

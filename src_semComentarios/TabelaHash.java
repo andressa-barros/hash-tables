@@ -21,7 +21,7 @@ public class TabelaHash {
         return tabela;
     }
 
-    public int getTamanhoTabela() { // pq o duplo hash vai usar
+    public int getTamanhoTabela() {
         return tamanhoTabela;
     }
 
